@@ -1,0 +1,4 @@
+cc main.c
+./a.out
+echo exit code $?
+rm ./a.out
