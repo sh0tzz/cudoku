@@ -31,12 +31,18 @@ void loadGrid(int *p_array)
 
 void renderGrid(int *p_grid)
 {
-	int i, j;
+	int i, j, n;
 	printf("┏━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┓\n");
 	for (i = 0; i < 9; i++) {
 		printf("┃");
 		for (j = 0; j < 9; j++) {
-			printf(" %d ", *(p_grid+i*9+j));
+			n = *(p_grid+i*9+j);
+			if (n != 0) {
+				printf(" %d ", n);
+			} else {
+				printf("   ");
+			}
+			
 			if ((j+1) % 3 == 0) {
 				printf("┃");
 			}
@@ -63,9 +69,9 @@ bool isPossible(int x, int y, int num, int *p_grid)
 	int square_x = x / 3 * 3;
 	int square_y = y / 3 * 3;
 	int j;
-	for (i = square_y; i < square_y + 3; i++) {
-		for (j = square_x; j < square_y + 3; j++) {
-			if (*(p_grid + i*9 + j)	== num) {
+	for (i = 0; i < 3; i++) {
+		for (j = 0; j < 3; j++) {
+			if (*(p_grid + square_y*9 +  i*9 + square_x + j) == num) {
 				return false;
 			}
 		}
@@ -90,7 +96,7 @@ void fillFreeSpots(int *p_grid)
 				}
 				if (index == 1) {
 					*(p_grid + i*9 + j) = possibles[0];
-					printf("Set (%d,%d) to %d\n", j, i, possibles[0]);
+					printf("Set (%d,%d) to %d\n", j+1, i+1, possibles[0]);
 				}
 			}
 		}
@@ -102,10 +108,8 @@ int main()
 	int grid[9][9];
 	int *p_grid = &grid[0][0];
 	loadGrid(p_grid);
-	while (true) {
-		fillFreeSpots(p_grid);
-		break;
-	}
+	renderGrid(p_grid);
+	fillFreeSpots(p_grid);
 	renderGrid(p_grid);
 	return 0;
 }
