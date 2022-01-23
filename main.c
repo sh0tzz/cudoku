@@ -71,7 +71,7 @@ bool isPossible(int x, int y, int num, int *p_grid)
 	int j;
 	for (i = 0; i < 3; i++) {
 		for (j = 0; j < 3; j++) {
-			if (*(p_grid + square_y*9 +  i*9 + square_x + j) == num) {
+			if (*(p_grid + square_y*9 + i*9 + square_x + j) == num) {
 				return false;
 			}
 		}
