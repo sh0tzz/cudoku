@@ -37,7 +37,6 @@ void loadFromString(char *string, int *p_array)
 			printf("Too many numbers in given string\n");
 			exit(EXIT_FAILURE);
 		}
-			printf("1: %c\n", string[i]);
 		if (string[i] >= '0' && string[i] <= '9') {
 			*(p_array + index) = string[i] - '0';
 			index++;
