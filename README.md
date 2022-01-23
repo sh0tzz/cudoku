@@ -2,4 +2,4 @@
 sudoku solver in c
 
 
-# still in the making
+# cba to make readme
