@@ -45,44 +45,37 @@ bool isPossible(int x, int y, int num, int *p_grid) {
 	return true;
 }
 
-int ** loadGrid() {
-	int **array, i;
-	array = malloc(9 * sizeof(int *));
-	for (i = 0; i < 9; i++) {
-		array[i] = malloc(9 * sizeof(int));
-	}
+
+void * loadGrid(int *p_array) {
 	FILE *f_ptr = fopen("grid.txt", "r");
 	if (f_ptr == NULL) {
 		printf("File grid.txt not found\n");
 		exit(EXIT_FAILURE);
 	}
-	//memset(*array, 0, sizeof(array));
-	// char ch;
-	// int index = 0;
-	// while ((ch = fgetc(f_ptr)) != EOF) {
-		// if (ch >= '0' && ch <= '9') {
-			// array[index/9][index%9] = ch - 48;
-		// }
-	// }
-	array = {
-		{1, 2, 3, 4, 5, 6, 7, 8, 9},
-		{2, 3, 4, 5, 6, 7, 8, 9, 1},
-		{3, 4, 5, 6, 7, 8, 9, 1, 2},
-		{4, 5, 6, 7, 8, 9, 1, 2, 3},
-		{5, 6, 7, 8, 9, 1, 2, 3, 4},
-		{6, 7, 8, 9, 1, 2, 3, 4, 5},
-		{7, 8, 9, 1, 2, 3, 4, 5, 6},
-		{8, 9, 1, 2, 3, 4, 5, 6, 7},
-		{9, 1, 2, 3, 4, 5, 6, 7, 8}
-	};
+	char ch;
+	int i = 0;
+	while ((ch = fgetc(f_ptr)) != EOF) {
+		if (i > 81) {
+			printf("Too many numbers in 'grid.txt'\n");
+			exit(EXIT_FAILURE);
+		}
+		if (ch >= '0' && ch <= '9') {
+			*(p_array + i) = ch - '0';
+			i++;
+		}
+	}
+	if (i < 81) {
+		printf("Not enough numbers in 'grid.txt'\n");
+		exit(EXIT_FAILURE);
+	}
 	fclose(f_ptr);
-	return array;
 }
 
 int main()
 {
-	int **grid = loadGrid();
+	int grid[9][9];
 	int *p_grid = &grid[0][0];
+	loadGrid(p_grid);
 	renderGrid(p_grid);
 	int i, j, k;
 	int possibles[9], index;
