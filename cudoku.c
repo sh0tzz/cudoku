@@ -127,8 +127,8 @@ int main(int argc, char *argv[])
 {
 	char *USAGE = "cudoku <SRC-TYPE> <SRC> [<RENDER>]\n"
 				  "SRC-TYPE:\n"
-				  "    -s --string    load sudoku grid from SRC string\n"
-				  "    -f --file      load sudoku grid from filename provided in SRC\n"
+				  "    -s --string    load sudoku grid from string provided as SRC\n"
+				  "    -f --file      load sudoku grid from file provided as SRC\n"
 				  "RENDER:\n"
 				  "    -r -i --render-input    render unsolved grid";
 	int grid[9][9];
