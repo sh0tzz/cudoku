@@ -2,8 +2,8 @@
 ```
 cudoku <SRC-TYPE> <SRC> [<RENDER>]
   SRC-TYPE:
-      -s --string    load sudoku grid from SRC string
-      -f --file      load sudoku grid from filename provided in SRC
+      -s --string    load sudoku grid from string provided as SRC
+      -f --file      load sudoku grid from file provided as SRC
   RENDER:
       -r -i --render-input    render unsolved grid
 ```
